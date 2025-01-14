@@ -31,8 +31,8 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
-@app.get("/cars/{car_name}")  # Mark car_name endpoint as deprecated
-async def read_car(car_name: str, db: db_dependency, skip: int = 0, limit: int = 10): # type: ignore
+@app.get("/cars/{car_name}")
+async def read_car(car_name: str, db: db_dependency, skip: int = 0, limit: int = 10):
     result = db.query(models.Car).filter(models.Car.Name == car_name).offset(skip).limit(limit).first()
     if not result:
         raise HTTPException(status_code=404, detail='Carro não encontrado')
@@ -48,7 +48,7 @@ async def create_car(car: CarBase, db: db_dependency): # type: ignore
 
 
 @app.put("/cars/{car_id}")
-async def update_car(car_id: int, car: CarBase, db: db_dependency): # type: ignore
+async def update_car(car_id: int, car: CarBase, db: db_dependency):
     try:
         db_car = db.query(models.Car).filter(models.Car.id == car_id).first()
         if not db_car:
@@ -66,7 +66,7 @@ async def update_car(car_id: int, car: CarBase, db: db_dependency): # type: igno
 
 
 @app.delete("/cars/{car_id}")
-async def delete_car(car_id: int, db: db_dependency): # type: ignore
+async def delete_car(car_id: int, db: db_dependency):
     try:
         db_car = db.query(models.Car).filter(models.Car.id == car_id).first()
         if not db_car:
@@ -80,13 +80,13 @@ async def delete_car(car_id: int, db: db_dependency): # type: ignore
 
 
 @app.get("/cars")
-async def get_cars(db: db_dependency, skip: int = 0, limit: int = 10): # type: ignore
+async def get_cars(db: db_dependency, skip: int = 0, limit: int = 10):
     cars = db.query(models.Car).offset(skip).limit(limit).all()
     return [{"Id": car.id, "Name": car.Name, "Status": car.Status, "PhotoId": car.Photo_id} for car in cars]
 
 
 @app.get("/cars/{car_id}/photo")
-async def get_car_photo(car_id: int, db: db_dependency): # type: ignore
+async def get_car_photo(car_id: int, db: db_dependency):
     car = db.query(models.Car).filter(models.Car.id == car_id).first()
     if not car:
         raise HTTPException(status_code=404, detail="Carro não encontrado")
