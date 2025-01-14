@@ -41,5 +41,5 @@ docker run -p 8000:8000 imagem-api
 ```
 
 Para acessar a documentação da API basta seguir uma dessas URLs no navegador:<br>
-    - http://127.0.0.1:8000/docs<br>
-    - http://localhost:8000/docs
+    * http://127.0.0.1:8000/docs<br>
+    * http://localhost:8000/docs
