@@ -32,6 +32,8 @@ Esta API RESTful foi desenvolvida com FastAPI para gerenciar informações sobre
 4. Installe o Docker Desktop: 
     <a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a>
 
+5. Preencha as credenciais do banco de dados no arquivo **database.py**. Este arquivo está localizado na raiz do projeto.
+
 ## Inicialização
 
 Execute os seguintes comandos:
